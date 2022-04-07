@@ -77,7 +77,7 @@ class Turn_plugin:
 
         self.plugin_icon = QIcon(':/plugins/Turn_plugin/icon.png')
         self.action = QAction(self.plugin_icon, "Turn plugin", self.iface.mainWindow())
-        self.action.triggered.connect(Turn_plugin.run)
+        self.action.triggered.connect(self.run)
 
         self.iface.addToolBarIcon(self.action)
 
@@ -90,14 +90,15 @@ class Turn_plugin:
         self.mainWindow = None
         self.pluginIsActive = False
 
-    @classmethod
     def run(self):
         """Run method that loads and starts the plugin"""
         self.pluginIsActive = True
 
         self.mainWindow = Ui_MainTurnDialog()
         self.mainWindow.show()
-
+    
+    def rotate(self):
+        """Involves processing mechanism with rotating vector data around geometric center."""
         self.mainWindowProvider = MainWindowProvider(self.mainWindow.getInputLayerName(),
                                                      self.mainWindow.getProcessingMethod(),
                                                      self.mainWindow.getRotationAngle(),
