@@ -22,3 +22,4 @@ class Ui_MainTurnDialog(QtWidgets.QDialog, FORM_CLASS):
         """Constructor."""
         super(Ui_MainTurnDialog, self).__init__(parent)
         self.setupUi(self)
+        self.comboBox.addItem("Rotation")
