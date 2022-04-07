@@ -27,7 +27,7 @@
      <enum>QLayout::SetMaximumSize</enum>
     </property>
     <item row="2" column="2">
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="methodComboBox">
       <property name="currentText">
        <string/>
       </property>
@@ -40,13 +40,13 @@
      <layout class="QVBoxLayout" name="verticalLayout_2"/>
     </item>
     <item row="0" column="2">
-     <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox"/>
+     <widget class="QgsMapLayerComboBox" name="mapLayerComboBox"/>
     </item>
     <item row="1" column="2">
      <layout class="QVBoxLayout" name="verticalLayout"/>
     </item>
     <item row="4" column="2">
-     <widget class="QgsSpinBox" name="mQgsSpinBox">
+     <widget class="QgsSpinBox" name="rotationSpinBox">
       <property name="minimum">
        <number>-360</number>
       </property>
@@ -124,7 +124,26 @@
      <layout class="QHBoxLayout" name="horizontalLayout"/>
     </item>
     <item row="5" column="2">
-     <widget class="QLineEdit" name="OutputLineEdit"/>
+     <widget class="QLineEdit" name="outputLineEdit">
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Normal</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>Name of rotated vector</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
     <item row="5" column="0">
      <widget class="QLabel" name="label_4">

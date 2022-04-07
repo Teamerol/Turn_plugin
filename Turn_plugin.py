@@ -31,6 +31,7 @@ from .resources import *
 # Import the code for the DockWidget
 #from .Turn_plugin_dockwidget import Turn_pluginDockWidget
 from .MainWindow import Ui_MainTurnDialog
+from .MainWindowProvider import MainWindowProvider
 import os.path
 
 
@@ -72,7 +73,7 @@ class Turn_plugin:
 
 
     def initGui(self):
-        """Create the menu entries and toolbar icons inside the QGIS GUI."""
+        """Create toolbar icon inside the QGIS GUI."""
 
         self.plugin_icon = QIcon(':/plugins/Turn_plugin/icon.png')
         self.action = QAction(self.plugin_icon, "Turn plugin", self.iface.mainWindow())
@@ -93,5 +94,11 @@ class Turn_plugin:
     def run(self):
         """Run method that loads and starts the plugin"""
         self.pluginIsActive = True
+
         self.mainWindow = Ui_MainTurnDialog()
         self.mainWindow.show()
+
+        self.mainWindowProvider = MainWindowProvider(self.mainWindow.getInputLayerName(),
+                                                     self.mainWindow.getProcessingMethod(),
+                                                     self.mainWindow.getRotationAngle(),
+                                                     self.mainWindow.getOutputName())
