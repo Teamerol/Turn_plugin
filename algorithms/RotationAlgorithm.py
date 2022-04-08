@@ -13,6 +13,8 @@ class RotationAlgorithm:
 
     def findCentroid(self):
         """Implements finding of centroids in the layer."""
+
+        #TODO: method doesn't work correctly for linear and polygonal layer. It properly finds geometric center only for points layer.
         first_object_id = 1
 
         try:
@@ -28,6 +30,8 @@ class RotationAlgorithm:
 
     def rotate(self):
         """Rotates vector layer on given angle around anchor point."""
+
+        #TODO: Catches QgsProcessingException if this method is executed with the same name as already created layer.
         try:
             return processing.runAndLoadResults("native:rotatefeatures", {"INPUT": self.parameters.processingLayer,
                                                             "ANGLE": self.parameters.rotationAngle,
