@@ -28,12 +28,11 @@ from qgis.PyQt.QtWidgets import QAction
 # Initialize Qt resources from file resources.py
 from .resources import *
 
-# Import the code for the DockWidget
-#from .Turn_plugin_dockwidget import Turn_pluginDockWidget
+import os.path
+
 from .algorithms.RotationAlgorithm import RotationAlgorithm
 from .MainWindow import Ui_MainTurnDialog
 from .MainWindowRotationProvider import MainWindowRotationProvider
-import os.path
 
 
 class Turn_plugin:
@@ -49,27 +48,6 @@ class Turn_plugin:
         """
         # Save reference to the QGIS interface
         self.iface = iface
-
-        # initialize plugin directory
-        self.plugin_dir = os.path.dirname(__file__)
-
-        # initialize locale
-        locale = QSettings().value('locale/userLocale')[0:2]
-        locale_path = os.path.join(
-            self.plugin_dir,
-            'i18n',
-            'Turn_plugin_{}.qm'.format(locale))
-
-        if os.path.exists(locale_path):
-            self.translator = QTranslator()
-            self.translator.load(locale_path)
-            QCoreApplication.installTranslator(self.translator)
-
-        # Declare instance attributes
-        self.actions = []
-
-        #print "** INITIALIZING Turn_plugin"
-
         self.pluginIsActive = False
 
 
@@ -105,6 +83,7 @@ class Turn_plugin:
         self.mainWindow.cancelButton.clicked.connect(self.hideMainWindow)
     
     def hideMainWindow(self):
+        """Hides main window."""
         self.mainWindow.hide()
 
     def rotate(self):

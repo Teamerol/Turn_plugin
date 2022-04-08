@@ -12,6 +12,7 @@ class RotationAlgorithm:
         self.parameters = rotationProvider
 
     def findCentroid(self):
+        """Implements finding of centroids in the layer."""
         first_object_id = 1
 
         try:
@@ -26,6 +27,7 @@ class RotationAlgorithm:
         return point
 
     def rotate(self):
+        """Rotates vector layer on given angle around anchor point."""
         try:
             return processing.runAndLoadResults("native:rotatefeatures", {"INPUT": self.parameters.processingLayer,
                                                             "ANGLE": self.parameters.rotationAngle,
