@@ -6,27 +6,63 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>479</width>
+    <height>391</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Turn plugin</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>13</x>
      <y>18</y>
-     <width>371</width>
-     <height>271</height>
+     <width>461</width>
+     <height>361</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
     <property name="sizeConstraint">
      <enum>QLayout::SetMaximumSize</enum>
     </property>
+    <item row="2" column="2">
+     <widget class="QComboBox" name="methodComboBox">
+      <property name="currentText">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Rotation</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <layout class="QVBoxLayout" name="verticalLayout_2"/>
+    </item>
+    <item row="0" column="2">
+     <widget class="QgsMapLayerComboBox" name="mapLayerComboBox"/>
+    </item>
+    <item row="1" column="2">
+     <layout class="QVBoxLayout" name="verticalLayout"/>
+    </item>
+    <item row="4" column="2">
+     <widget class="QgsSpinBox" name="rotationSpinBox">
+      <property name="minimum">
+       <number>-360</number>
+      </property>
+      <property name="maximum">
+       <number>360</number>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Layer</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="2">
      <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -39,9 +75,30 @@
       </property>
      </spacer>
     </item>
-    <item row="1" column="0">
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Method</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Rotation angle</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="2">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
+      <item row="1" column="1">
+       <widget class="QPushButton" name="runButton">
+        <property name="text">
+         <string>Run</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -54,57 +111,62 @@
         </property>
        </spacer>
       </item>
-      <item row="0" column="1">
-       <widget class="QDialogButtonBox" name="buttonBox">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="standardButtons">
-         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-        </property>
-        <property name="centerButtons">
-         <bool>false</bool>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="cancelButton">
+        <property name="text">
+         <string>Cancel</string>
         </property>
        </widget>
       </item>
      </layout>
     </item>
+    <item row="0" column="1">
+     <layout class="QHBoxLayout" name="horizontalLayout"/>
+    </item>
+    <item row="5" column="2">
+     <widget class="QLineEdit" name="outputLineEdit">
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Normal</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>Name of rotated vector</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Output name</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsMapLayerComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgsmaplayercombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>qgsspinbox.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>MainTurnDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>MainTurnDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
