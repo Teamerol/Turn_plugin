@@ -10,6 +10,7 @@
 import os
 import re
 
+from qgis.core import QgsVectorLayer
 from qgis.PyQt import QtGui, QtWidgets, uic
 
 
@@ -25,8 +26,8 @@ class Ui_MainTurnDialog(QtWidgets.QDialog, FORM_CLASS):
         self.setupUi(self)
         self.methodComboBox.addItem("Rotation")
     
-    def getInputLayerName(self) -> str:
-        return str(self.mapLayerComboBox.currentLayer())
+    def getInputLayer(self) -> QgsVectorLayer:
+        return self.mapLayerComboBox.currentLayer()
     
     def getProcessingMethod(self) -> str:
         return str(self.methodComboBox.currentText())
@@ -36,4 +37,5 @@ class Ui_MainTurnDialog(QtWidgets.QDialog, FORM_CLASS):
     
     def getOutputName(self) -> str:
         return str(self.outputLineEdit.text())
+    
     

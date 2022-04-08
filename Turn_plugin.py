@@ -30,8 +30,9 @@ from .resources import *
 
 # Import the code for the DockWidget
 #from .Turn_plugin_dockwidget import Turn_pluginDockWidget
+from .algorithms.RotationAlgorithm import RotationAlgorithm
 from .MainWindow import Ui_MainTurnDialog
-from .MainWindowProvider import MainWindowProvider
+from .MainWindowRotationProvider import MainWindowRotationProvider
 import os.path
 
 
@@ -77,7 +78,7 @@ class Turn_plugin:
 
         self.plugin_icon = QIcon(':/plugins/Turn_plugin/icon.png')
         self.action = QAction(self.plugin_icon, "Turn plugin", self.iface.mainWindow())
-        self.action.triggered.connect(self.run)
+        self.action.triggered.connect(self.start_run)
 
         self.iface.addToolBarIcon(self.action)
 
@@ -90,16 +91,28 @@ class Turn_plugin:
         self.mainWindow = None
         self.pluginIsActive = False
 
-    def run(self):
+    def start_run(self):
         """Run method that loads and starts the plugin"""
         self.pluginIsActive = True
 
         self.mainWindow = Ui_MainTurnDialog()
         self.mainWindow.show()
+        self.bindButtons()
     
+    def bindButtons(self):
+        """Adds events to Run and Cancel buttons."""
+        self.mainWindow.runButton.clicked.connect(self.rotate)
+        self.mainWindow.cancelButton.clicked.connect(self.hideMainWindow)
+    
+    def hideMainWindow(self):
+        self.mainWindow.hide()
+
     def rotate(self):
         """Involves processing mechanism with rotating vector data around geometric center."""
-        self.mainWindowProvider = MainWindowProvider(self.mainWindow.getInputLayerName(),
+        self.mainWindowProvider = MainWindowRotationProvider(self.mainWindow.getInputLayer(),
                                                      self.mainWindow.getProcessingMethod(),
                                                      self.mainWindow.getRotationAngle(),
                                                      self.mainWindow.getOutputName())
+        
+        rotation = RotationAlgorithm(self.mainWindowProvider)
+        rotation.rotate()
